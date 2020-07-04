@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.wpkixx.com/html/winku/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Nov 2018 15:38:52 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title>Twitter</title>
+    <link rel="icon" href="~/images/fav.png" type="image/png" sizes="16x16">
+
+    <link rel="stylesheet" href="~/css/main.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/color.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
+
+</head>
+<body>
+    <!--<div class="se-pre-con"></div>-->
+    <div class="theme-layout">
+
+        <div class="responsive-header">
+            <div class="mh-head first Sticky">
+                <span class="mh-btns-left">
+                    <a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
+                </span>
+                <span class="mh-text">
+                    <a href="newsfeed.html" title=""><img src="~/images/twitterlogo.jpg" alt=""></a>
+                </span>
+                <span class="mh-btns-right">
+                    <a class="fa fa-sliders" href="#shoppingbag"></a>
+                </span>
+            </div>
+            <div class="mh-head second">
+                <form class="mh-form">
+                    <input placeholder="search" />
+                    <a href="#/" class="fa fa-search"></a>
+                </form>
+            </div>
+            <nav id="menu" class="res-menu">
+                <ul>
+                    <li>
+                        <span>Anasayfa</span>
+
+                    </li>
+                    <li>
+                        <span>Bildirimler</span>
+
+                    </li>
+                    <li>
+                        <span>Mesajlar</span>
+
+                    </li>
+
+
+                    <li><a href="about.html" title="">about</a></li>
+                    <li><a href="about-company.html" title="">About Us2</a></li>
+                    <li><a href="contact.html" title="">contact</a></li>
+                    <li><a href="contact-branches.html" title="">Contact Us2</a></li>
+                    <li><a href="widgets.html" title="">Widgts</a></li>
+                </ul>
+            </nav>
+
+        </div><!-- responsive header -->
+
+        <div class="topbar stick">
+            <div class="logo">
+                <a title="" href="/HomePage"><img src="~/images/twitterlogo.jpg" width="30%" height="30%" alt=""></a>
+            </div>
+
+            <div class="top-area">
+                <ul class="main-menu">
+                    <li>
+                        <a href="/HomePage" title="">Anasayfa</a>
+
+                    </li>
+                    <li>
+                        <a href="/Message" title="">Mesajlar</a>
+                        
+                    </li>
+
+                </ul>
+                <ul class="setting-area">
+                   
+                    <form action="/HomePage/Search" method="post">
+                        <input type="text" name="UserName"/>
+                        <button type="submit">Ara</button>
+                    </form>
+
+
+                </ul>
+
+                <a type="button" class="btn btn-danger" href="/Home">Çıkış Yap</a>
+                <span class="ti-menu main-menu" data-ripple=""></span>
+            </div>
+        </div><!-- topbar -->
+
+
+        <div>
+            @RenderBody()
+
+        </div>
+
+        
+    
+    </div>
+
+
+
+    <script data-cfasync="false" src="~/js/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="~/js/main.min.js"></script>
+    <script src="~/js/script.js"></script>
+    <script src="~/js/map-init.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
+
+
+    <script type="text/javascript">
+        function SearchUser() {
+            var formData = $("#SearchUser").serialize();
+            $.ajax({
+                url: "/HomePage/Search",
+                method: "POST",
+                data: formData,
+                success: function (response) {
+                    ;
+                }
+                
+            });
+        }
+    </script>
+</body>
+
+<!-- Mirrored from www.wpkixx.com/html/winku/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Nov 2018 15:38:52 GMT -->
+</html>

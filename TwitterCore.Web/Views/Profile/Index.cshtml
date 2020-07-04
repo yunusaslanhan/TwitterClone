@@ -1,0 +1,372 @@
+﻿@model TwitterCore.Common.Dtos.UserTweetDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section>
+    <div class="feature-photo">
+        <figure><img src="~/images/resources/timeline-1.jpg" alt=""></figure>
+        <div class="add-btn">
+           
+
+            <form id="followForm">
+                <input type="hidden" id="FollowingId" name="FollowingId" value="@Model.userDto.UserId" />
+
+                @if (Model.userDto.UserId != Model.loginUser.UserId)
+                {
+
+                    if (ViewBag.IsFollow)
+                    {
+                        <button type="button" class="btn btn-danger" onclick="PostDeleteFollow()">Takipten Çık</button>
+                    }
+
+                    else { 
+                        
+                        <button type="button" class="btn btn-primary" onclick="PostAddFollow()">Takip Et</button>
+                    }
+                    
+
+                }
+            </form>
+        </div>
+        
+        <div class="container-fluid">
+            <div class="row merged">
+                <div class="col-lg-2 col-sm-3">
+                    <div class="user-avatar">
+                        <figure>
+                            <img src="~/images/yumurta.jpg" alt="">
+                            <form class="edit-phto">
+                                <i class="fa fa-camera-retro"></i>
+                                <label class="fileContainer">
+                                    Edit Display Photo
+                                    <input type="file" />
+                                </label>
+                            </form>
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-lg-10 col-sm-9">
+                    <div class="timeline-info">
+                        <ul>
+                            <li class="admin-name">
+                                <h5>@Model.userDto.Name @Model.userDto.LastName</h5>
+                                <span>@Model.userDto.UserName</span>
+                                
+                            </li>
+                            <li>
+                                <a class="" href="#" title="" data-ripple="">Tweetler <span>(@ViewBag.TweetCount)</span> </a>
+                                <a class="" href="#" title="" data-ripple="">Takip Edilen <span>(@ViewBag.Follower)</span></a>
+                                <a class="" href="#" title="" data-ripple="">Takipçiler <span>(@ViewBag.Following)</span></a>
+                                <a class="" href="#" title="" data-ripple="">Beğeniler </a>
+                              
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- top area -->
+
+<section>
+    <div class="gap gray-bg">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row" id="page-contents">
+                        <div class="col-lg-3">
+                            <aside class="sidebar static">
+
+                                
+                                
+                            </aside>
+                        </div><!-- sidebar -->
+
+                        <div id="ResponseContainer">
+                            @if (ViewBag.IsPost ?? false)
+                            {
+                                if (ViewBag.Result)
+                                {
+                                    <div class="alert alert-success">
+                                        <strong>Success!</strong> Indicates a successful or positive action.
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-danger">
+                                        <strong>Error!</strong>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="col-lg-6">
+                           
+                        @if (Model.loginUser.UserId == Model.userDto.UserId) { 
+                        <div class="central-meta">
+                                <div class="new-postbox">
+                                    <figure>
+                                        <img src="~/images/resources/friend-avatar9.jpg" alt="">
+                                    </figure>
+                                    <div class="newpst-input">
+                                        <form id="tweetForm">
+                                            <input type="hidden" id="UserId" name="UserId" value="@Model.userDto.UserId" />
+                                            <textarea rows="2" id="TweetText" name="TweetText" placeholder="write something" maxlength="140"></textarea>
+                                            <div class="attachments">
+                                                <ul>
+                                                    <li>
+                                                        <i class="fa fa-music"></i>
+                                                        <label class="fileContainer">
+                                                            <input type="file">
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-image"></i>
+                                                        <label class="fileContainer">
+                                                            <input type="file">
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-video-camera"></i>
+                                                        <label class="fileContainer">
+                                                            <input type="file">
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-camera"></i>
+                                                        <label class="fileContainer">
+                                                            <input type="file">
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <button type="button" onclick="PostNewTweet(@Model.userDto.UserId)">Tweetle</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </form>
+
+
+
+                                        <script type="text/template" id="SuccessTemplate">
+                                            <div class="alert alert-success">
+                                                <strong>Tweet Başarılı!!!</strong>
+                                            </div>
+                                        </script>
+                                        <script type="text/template" id="ErrorTemplate">
+                                            <div class="alert alert-danger">
+                                                <strong>Tweet Başarısız!!!</strong>
+                                            </div>
+                                        </script>
+
+
+                                    </div>
+                                </div>
+                            </div><!-- add post new box -->
+                        }
+                            <div class="loadMore">
+
+                                <!--burdan-->
+
+
+                                @foreach (var item in Model.tweetList)
+                                {
+
+
+                                    <div class="central-meta item">
+                                        <div class="user-post">
+                                            <div class="friend-info">
+                                                <figure>
+                                                    <img src="~/images/resources/friend-avatar9.jpg" alt="">
+                                                </figure>
+                                                <div class="friend-name">
+                                                    <ins><a href="time-line.html" title="">@Model.userDto.Name @Model.userDto.LastName</a></ins>
+
+                                                    <span>published: june,2 2018 19:PM</span>
+                                                </div>
+                                                <div class="description">
+
+                                                    <p>
+                                                        @item.TweetText
+                                                    </p>
+                                                </div>
+                                                <div class="post-meta">
+
+                                                    <div class="we-video-info">
+                                                        <ul>
+                                                            <li>
+                                                                <span class="views" data-toggle="tooltip" title="views">
+                                                                    <i class="fa fa-eye"></i>
+                                                                    <ins>1.2k</ins>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="comment" data-toggle="tooltip" title="Comments">
+                                                                    <i class="fa fa-comments-o"></i>
+                                                                    <ins>52</ins>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="like" data-toggle="tooltip" title="like">
+                                                                    <i class="ti-heart"></i>
+                                                                    <ins>2.2k</ins>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="dislike" data-toggle="tooltip" title="dislike">
+                                                                    <i class="ti-heart-broken"></i>
+                                                                    <ins>200</ins>
+                                                                </span>
+                                                            </li>
+                                                            <li class="social-media">
+                                                                <div class="menu">
+                                                                    <div class="btn trigger"><i class="fa fa-share-alt"></i></div>
+                                                                    <div class="rotater">
+                                                                        <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a></div>
+                                                                    </div>
+                                                                    <div class="rotater">
+                                                                        <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-facebook"></i></a></div>
+                                                                    </div>
+                                                                    <div class="rotater">
+                                                                        <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-google-plus"></i></a></div>
+                                                                    </div>
+                                                                    <div class="rotater">
+                                                                        <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-twitter"></i></a></div>
+                                                                    </div>
+                                                                    <div class="rotater">
+                                                                        <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-css3"></i></a></div>
+                                                                    </div>
+                                                                    <div class="rotater">
+                                                                        <div class="btn btn-icon">
+                                                                            <a href="#" title=""><i class="fa fa-instagram"></i></a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="rotater">
+                                                                        <div class="btn btn-icon">
+                                                                            <a href="#" title=""><i class="fa fa-dribbble"></i></a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="rotater">
+                                                                        <div class="btn btn-icon">
+                                                                            <a href="#" title=""><i class="fa fa-pinterest"></i></a>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+
+                                                
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--buraya kadar-->
+
+                                }
+
+                            </div>
+                        </div><!-- centerl meta -->
+                        <div class="col-lg-3">
+                            <aside class="sidebar static">
+                               
+
+                                
+                            </aside>
+                        </div><!-- sidebar -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    function PostNewTweet(x) {
+        var formData = $("#tweetForm").serialize();
+        debugger;
+
+        $.ajax({
+            url: "/Profile/PostNewTweetForAjax",
+            method: "POST",
+            data: formData,
+            success: function (response) {
+                var $container = $("#ResponseContainer");
+
+                debugger;
+
+
+                if (response) {
+                    //$container.html($("#SuccessTemplate").html())
+                    //$("form")[0].reset();
+
+                    location.href = "/Profile/Index/" + x;
+
+                } else {
+                    $container.html($("#ErrorTemplate").html())
+                }
+            }
+        });
+    }
+</script>
+
+<script type="text/javascript">
+    function PostAddFollow() {
+        var formData = $("#followForm").serialize();
+        debugger;
+
+        $.ajax({
+            url: "/Profile/PostAddFollowForAjax",
+            method: "POST",
+            data: formData,
+            success: function (response) {
+                var $container = $("#ResponseContainer");
+
+                debugger;
+
+
+                if (response) {
+                    //$container.html($("#SuccessTemplate").html())
+                    //$("form")[0].reset();
+                    location.href = response;
+                    
+
+                } else {
+                    $container.html($("#ErrorTemplate").html())
+                }
+            }
+        });
+    }
+</script>
+
+<script type="text/javascript">
+    function PostDeleteFollow() {
+        var formData = $("#followForm").serialize();
+        debugger;
+
+        $.ajax({
+            url: "/Profile/PostDeleteFollowForAjax",
+            method: "POST",
+            data: formData,
+            success: function (response) {
+                var $container = $("#ResponseContainer");
+
+                debugger;
+
+
+                if (response) {
+                    //$container.html($("#SuccessTemplate").html())
+                    //$("form")[0].reset();
+                    location.href = response;
+                    
+
+                } else {
+                    $container.html($("#ErrorTemplate").html())
+                }
+            }
+        });
+    }
+</script>

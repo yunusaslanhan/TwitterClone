@@ -1,0 +1,9 @@
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Domain\bin\Debug\netcoreapp2.1\TwitterCore.Domain.deps.json
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Domain\bin\Debug\netcoreapp2.1\TwitterCore.Domain.dll
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Domain\bin\Debug\netcoreapp2.1\TwitterCore.Domain.pdb
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Domain\obj\Debug\netcoreapp2.1\TwitterCore.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Domain\obj\Debug\netcoreapp2.1\TwitterCore.Domain.AssemblyInfoInputs.cache
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Domain\obj\Debug\netcoreapp2.1\TwitterCore.Domain.AssemblyInfo.cs
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Domain\obj\Debug\netcoreapp2.1\TwitterCore.Domain.dll
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Domain\obj\Debug\netcoreapp2.1\TwitterCore.Domain.pdb
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Domain\obj\Debug\netcoreapp2.1\TwitterCore.Domain.csprojAssemblyReference.cache

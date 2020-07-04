@@ -1,0 +1,123 @@
+﻿@model List<TwitterCore.Common.Dtos.UserDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form id="messageForm">
+    <div class="container">
+        <div class="central-meta">
+            <div class="messages">
+                <h4 class="f-title"><i class="ti-bell"></i>Mesajlar <span class="more-options"><i class="fa fa-ellipsis-h"></i></span></h4>
+                <div class="message-box">
+                    <form id="FormMessage" method="post">
+                        <input name="FromId" id="FromId" style="visibility :hidden" value="@ViewBag.senderMessageId" />
+                        <select name="ToId" id="ToId" class="peoples">
+                            @foreach (var item in Model)
+                            {
+                                <option value="@item.UserId">@item.Name @item.LastName</option>
+                            }
+                        </select>
+                        <textarea name="MessageText"></textarea>
+                        <button type="button" class="btn btn-success" onclick="PostNewMessage()">Gönder</button>
+                        <button type="button" class="btn btn-success" onclick="PostMessageList()">Mesajları Göster</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+  <form id="messageListForm">
+      <div class="container">
+          <h5>Borderless Table</h5>
+
+          <table class="table table-borderless">
+              <thead>
+                  <tr>
+                      <th>Alan</th>
+                      <th>Mesajı Gönderen</th>
+
+                  </tr>
+              </thead>
+              <tbody>
+                  @foreach (var item in Model)
+                  {
+                      <tr>
+                          <td></td>
+                          <td>@ViewBag.senderMessageName @ViewBag.senderMessageLastName</td>
+
+                      </tr>
+                      <tr>
+                          <td>@item.Name @item.LastName</td>
+                          <td></td>
+
+                      </tr>
+                  }
+
+
+              </tbody>
+          </table>
+      </div>
+</form>
+
+<script type="text/javascript">
+    function PostNewMessage() {
+        var formData = $("#messageForm").serialize();
+        debugger;
+
+        $.ajax({
+            url: "/Message/PostNewMessageForAjax",
+            method: "POST",
+            data: formData,
+            success: function (response) {
+                var $container = $("#ResponseContainer");
+
+                debugger;
+
+
+                if (response) {
+                    //$container.html($("#SuccessTemplate").html())
+                    //$("form")[0].reset();
+
+                    location.href = "/Message"
+
+                } else {
+                    $container.html($("#ErrorTemplate").html())
+                }
+            }
+        });
+    }
+</script>
+
+<script type="text/javascript">
+    function PostMessageList() {
+        var formData = $("#messageListForm").serialize();
+        debugger;
+
+        $.ajax({
+            url: "/Message/PostMessageListForAjax",
+            method: "POST",
+            data: formData,
+            success: function (response) {
+                var $container = $("#ResponseContainer");
+
+                debugger;
+
+
+                if (response) {
+                    //$container.html($("#SuccessTemplate").html())
+                    //$("form")[0].reset();
+
+                    location.href = "/Message"
+
+                } else {
+                    $container.html($("#ErrorTemplate").html())
+                }
+            }
+        });
+    }
+</script>

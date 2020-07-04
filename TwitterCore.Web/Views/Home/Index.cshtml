@@ -1,0 +1,202 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.wpkixx.com/html/winku/landing.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Nov 2018 15:39:08 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title>Twitter</title>
+    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+
+    <link rel="stylesheet" href="css/main.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/color.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+<body>
+    <!--<div class="se-pre-con"></div>-->
+    <div class="theme-layout">
+        <div class="container-fluid pdng0">
+            <div class="row merged">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="land-featurearea">
+                        <div class="land-meta">
+                            <h1>Twitter</h1>
+                           
+                            <div class="friend-logo">
+                                <span><img src="images/wink.png" alt=""></span>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="login-reg-bg">
+                        <div class="log-reg-area sign">
+                            <h2 class="log-title">Giriş Yap</h2>
+                            
+                            <form id="girisform" method="post">
+                                <div class="form-group">
+                                    <input type="text" id="UserName" name="UserName" required="required" />
+                                    <label class="control-label" for="input">KullanıcıAdı</label><i class="mtrl-select"></i>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" id="Password" name="Password" required="required" />
+                                    <label class="control-label" for="input">Şifre</label><i class="mtrl-select"></i>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" checked="checked" /><i class="check-box"></i>Beni Hatırla.
+                                    </label>
+                                </div>
+                                <a href="#" title="" class="forgot-pwd">Parolanı unuttun mu?</a>
+                                <div class="submit-btns">
+                                    <button class="mtr-btn signin" type="button" onclick="PostLoginUser()"><span>Giriş Yap</span></button>
+                                    <button class="mtr-btn signup" type="button"><span>Kayıt Ol</span></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="ResponseContainer">
+                            @if (ViewBag.IsPost ?? false)
+                            {
+                                if (ViewBag.Result)
+                                {
+                                    <div class="alert alert-success">
+                                        <strong>Success!</strong> Indicates a successful or positive action.
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-danger">
+                                        <strong>Error!</strong> 
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="log-reg-area reg">
+                            <h2 class="log-title">Kayıt Ol</h2>
+
+                            <form id="kayitform" action="/Home/PostNewEmployee" method="post">
+                                <div class="form-group">
+                                    <input type="text" required="required" id="Name" name="Name" />
+                                    <label class="control-label" for="input">Ad</label><i class="mtrl-select"></i>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" required="required" id="LastName" name="LastName" />
+                                    <label class="control-label" for="input">Soyad</label><i class="mtrl-select"></i>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" required="required" id="UserName" name="UserName" />
+                                    <label class="control-label" for="input">Kullanıcı Adı</label><i class="mtrl-select"></i>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" required="required" id="Password" name="Password" />
+                                    <label class="control-label" for="input">Parola</label><i class="mtrl-select"></i>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" required="required" id="Email" name="Email" />
+                                    <label class="control-label" for="input">Email</label><i class="mtrl-select"></i>
+                                </div>
+                                <a href="#" title="" class="already-have">Zaten bir hesabın var mı?</a>
+                                <div class="submit-btns">
+                                    <button class="mtr-btn signup" type="button" onclick="PostNewEmployee()"><span>Kayıt Ol</span></button>
+                                </div>
+                            </form>
+
+
+                            <script type="text/javascript">
+                                function PostNewEmployee() {
+                                    var formData = $("#kayitform").serialize();
+                                    $.ajax({
+                                        url: "/Home/PostNewEmployeeForAjax",
+                                        method: "POST",
+                                        data: formData,
+                                        success: function (response) {
+                                            var $container = $("#ResponseContainer");
+                                            if (response) {
+                                                $container.html($("#SuccessTemplate").html())
+                                                //$("form")[0].reset();
+                                            } else {
+                                                $container.html($("#ErrorTemplate").html())
+                                            }
+                                        }
+                                    });
+                                }
+                            </script>
+
+
+                            <script type="text/javascript">
+                                function PostLoginUser() {
+                                    var formData = $("#girisform").serialize();
+                                    $.ajax({
+                                        url: "/Home/PostLoginUserForAjax",
+                                        method: "POST",
+                                        data: formData,
+                                        success: function (response) {
+                                            var $container = $("#ResponseContainer");
+                                            if (response) {
+
+                                                window.location = ("HomePage/Index"); ///ana sayfaya yönlendireceğin zaman bunu aç alltaki iki satırı sil   /home/index
+                                                $container.html($("#TrueLoginTemplate").html())
+                                                $("form")[0].reset();
+                                            } else {
+                                                $container.html($("#FalseLoginTemplate").html())
+                                                $("form")[0].reset();
+                                            }
+                                        }
+                                    });
+                                }
+                            </script>
+
+
+
+                            <script type="text/template" id="SuccessTemplate">
+                                <div class="alert alert-success">
+                                    <strong>Kayıt Başarılı!!!</strong>
+                                </div>
+                            </script>
+                            <script type="text/template" id="ErrorTemplate">
+                                <div class="alert alert-danger">
+                                    <strong>Kayıt Başarısız!!!</strong>
+                                </div>
+                            </script>
+
+                            <script type="text/template" id="TrueLoginTemplate">
+                                <div class="alert alert-success">
+                                    <strong>Giriş Başarılı!!!</strong>
+                                </div>
+                            </script>
+                            <script type="text/template" id="FalseLoginTemplate">
+                                <div class="alert alert-danger">
+                                    <strong>Giriş Başarısız!!!</strong>
+                                </div>
+                            </script>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="~/js/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="js/main.min.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+
+<!-- Mirrored from www.wpkixx.com/html/winku/landing.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Nov 2018 15:39:08 GMT -->
+</html>

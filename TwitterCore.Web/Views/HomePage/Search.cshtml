@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<TwitterCore.Common.Dtos.UserDto>
+
+
+<br />
+<br />
+<br />
+<br />
+
+<div class="container">
+    <div class="central-meta">
+        <div class="frnds">
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active fade show " id="frends">
+                    <ul class="nearby-contct">
+
+                        @foreach (var item in Model)
+                        {
+
+                            <li>
+                                <div class="nearly-pepls">
+                                    <figure>
+                                        <a href="time-line.html" title=""><img src="~/images/resources/friend-avatar9.jpg" alt=""></a>
+                                    </figure>
+                                    <div class="pepl-info">
+                                        <h4><a href="/Profile?Id=@item.UserId">@item.Name @item.LastName</a></h4>
+                                        <span>@item.UserName</span>
+                                        
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- centerl meta -->

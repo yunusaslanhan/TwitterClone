@@ -1,0 +1,16 @@
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Business\bin\Debug\netcoreapp2.1\TwitterCore.Business.deps.json
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Business\bin\Debug\netcoreapp2.1\TwitterCore.Business.dll
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Business\bin\Debug\netcoreapp2.1\TwitterCore.Business.pdb
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Business\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Http.Abstractions.dll
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Business\bin\Debug\netcoreapp2.1\TwitterCore.Common.dll
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Business\bin\Debug\netcoreapp2.1\TwitterCore.Domain.dll
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Business\bin\Debug\netcoreapp2.1\TwitterCore.Common.pdb
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Business\bin\Debug\netcoreapp2.1\TwitterCore.Domain.pdb
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Business\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Http.Abstractions.xml
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Business\obj\Debug\netcoreapp2.1\TwitterCore.Business.csprojAssemblyReference.cache
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Business\obj\Debug\netcoreapp2.1\TwitterCore.Business.csproj.CoreCompileInputs.cache
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Business\obj\Debug\netcoreapp2.1\TwitterCore.Business.AssemblyInfoInputs.cache
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Business\obj\Debug\netcoreapp2.1\TwitterCore.Business.AssemblyInfo.cs
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Business\obj\Debug\netcoreapp2.1\TwitterCore.Business.csproj.CopyComplete
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Business\obj\Debug\netcoreapp2.1\TwitterCore.Business.dll
+C:\Users\Yunus\source\repos\TwitterCore\TwitterCore.Business\obj\Debug\netcoreapp2.1\TwitterCore.Business.pdb
